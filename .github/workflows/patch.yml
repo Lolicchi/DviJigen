@@ -26,8 +26,8 @@ jobs:
     -  run: |
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-        scoop install gcc python scons make mingw
-        scons -j 108 target=editor use_mingw=yes production=yes lto=thin optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
+        scoop install gcc python scons make mingw-mstorsjo-llvm-ucrt
+        scons -j 108 target=editor use_mingw=yes use_llvm=yes production=yes lto=thin optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
     - uses: actions/cache/save@v4
       with:
         path: ${{env.scons-cache}}
