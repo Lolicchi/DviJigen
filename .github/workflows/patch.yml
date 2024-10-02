@@ -4,7 +4,7 @@ on:
 env:
   scons-cache: ${{github.workspace}}/.scons-cache/
   cache-name: ${{github.job}}
-  GODOT_BASE_BRANCH: 4.3
+  GODOT_BASE_BRANCH: 4.3-stable
 jobs:
   build:
     runs-on: windows-latest
@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: godotengine/godot
-        ref: 4.3
+        ref: ${{env.GODOT_BASE_BRANCH}}
         submodules: recursive
     - uses: actions/cache/restore@v4
       with:
