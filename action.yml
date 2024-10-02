@@ -1,6 +1,10 @@
 name: DviJigen
 on:
   workflow_dispatch:
+env:
+  scons-cache: ${{github.workspace}}/.scons-cache/
+  cache-name: ${{github.job}}
+  GODOT_BASE_BRANCH: 4.3
 jobs:
   build:
     runs-on: windows-latest
@@ -11,10 +15,24 @@ jobs:
         submodules: recursive
       uses: actions/cache/restore@v4
         with:
-          path: ${{github.workspace}}/.scons-cache/
-          key: ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+          path: ${{env.scons-cache}}
+          key: ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
           restore-keys: |
-            ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
-            ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
-            ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}-refs/heads/${{env.GODOT_BASE_BRANCH}}
-            ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}
+            ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+            ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
+            ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-refs/heads/${{env.GODOT_BASE_BRANCH}}
+            ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}
+      run: |
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+        Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+        scoop install gcc python scons make mingw
+        scons -j 108 target=editor use_mingw=yes production=yes optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
+      uses: actions/cache/save@v4
+        with:
+          path: ${{env.scons-cache}}
+          key: ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+      run: Remove-Item bin/* -Include *.exp,*.lib,*.pdb -Force
+      uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.job }}
+          path: bin/*
