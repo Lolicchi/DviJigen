@@ -1,7 +1,6 @@
 name: DviJigen
 on:
   workflow_dispatch:
-
 env:
   scons-cache: ${{github.workspace}}/.scons-cache/
   cache-name: ${{github.job}}
