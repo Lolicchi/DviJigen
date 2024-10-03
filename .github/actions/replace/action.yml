@@ -16,8 +16,6 @@ runs:
   steps:
   - run: |
       ${{ inputs.find }}
-      (Get-Content ${{ inputs.file }} -raw).replace(${{ inputs.find }}, '${{ inputs.replace }}')
-      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace(${{ inputs.find }}, '${{ inputs.replace }}')
-      '9'
+      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace(${{ inputs.find }}, ${{ inputs.replace }})
       (Get-Content ${{ inputs.file }} -raw)
     shell: pwsh
