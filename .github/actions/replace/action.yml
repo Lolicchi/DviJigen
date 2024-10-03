@@ -11,7 +11,7 @@ inputs:
     description: Text to replace
     required: true
 
-  runs:
-    using: "composite"
-    steps:
-      run: (Get-Content ${{ inputs.file }}) -replace [regex]::Escape(${{ inputs.find }}), ${{ inputs.replace }} | Set-Content ${{ inputs.file }}
+runs:
+  using: composite
+  steps:
+    run: (Get-Content ${{ inputs.file }}) -replace [regex]::Escape(${{ inputs.find }}), ${{ inputs.replace }} | Set-Content ${{ inputs.file }}
