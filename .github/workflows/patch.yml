@@ -35,8 +35,8 @@ jobs:
         replace: ${{ env.replace }}
     - uses: ./.github/actions/godot-cache-restore
       env:
-        find: ${{ fromJSON(["homareadachi"]) }}
-        replace: ${{ fromJSON(["homaretanmei"]) }}
+        find: ${{ fromJSON('["homareadachi"]') }}
+        replace: ${{ fromJSON('["homaretanmei"]') }}
       with:
         cache-name: ${{ env.cache-name }}
       continue-on-error: true
