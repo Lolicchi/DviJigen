@@ -20,11 +20,11 @@ jobs:
     - uses: ./DviJigen/.github/actions/replace
       with:
         file: ./SConstruct
-        find: >
+        find: |
           if env.editor_build:
           print_error("Build option `disable_3d=yes` cannot be used for editor builds, only for export template builds.")
           Exit(255)
-        replace: >
+        replace: |
           // if env.editor_build:
           // print_error("Build option `disable_3d=yes` cannot be used for editor builds, only for export template builds.")
           // Exit(255)
