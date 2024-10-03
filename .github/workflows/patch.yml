@@ -2,7 +2,6 @@ name: DviJigen
 on:
   workflow_dispatch:
 env:
-  scons-cache: ${{ github.workspace }}/.scons-cache/
   cache-name: windows-editor
   GODOT_BASE_BRANCH: 4.3-stable
 concurrency:
