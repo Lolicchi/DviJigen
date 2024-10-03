@@ -21,13 +21,13 @@ jobs:
       with:
         file: ./SConstruct
         find: |
-          'if env.editor_build:
+          if env.editor_build:
                   print_error("Build option `disable_3d=yes` cannot be used for editor builds, only for export template builds.")
-                  Exit(255)'
+                  Exit(255)
         replace: |
-          '// if env.editor_build:
+          // if env.editor_build:
                   // print_error("Build option `disable_3d=yes` cannot be used for editor builds, only for export template builds.")
-                  // Exit(255)'
+                  // Exit(255)
     - uses: actions/cache/restore@v4
       with:
         path: ${{env.scons-cache}}
