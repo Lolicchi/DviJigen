@@ -16,8 +16,8 @@ runs:
   steps:
   - run: |
       $file = Get-Content ${{ inputs.file }} -raw
-      $find = '${{ inputs.find }}'.Split('\n')
-      $replace = '${{ inputs.replace }}'.Split('\n')
+      $find = '${{ inputs.find }}'.split('\n')
+      $replace = '${{ inputs.replace }}'.split('\n')
       for ($i = 0; $i -lt $find.length; $i++) {
         $file = $file.replace($find[$i], $replace[$i])
       }
