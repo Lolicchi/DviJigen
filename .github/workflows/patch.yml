@@ -31,10 +31,10 @@ jobs:
     - uses: ./DviJigen/.github/actions/replace
       with:
         file: ./SConstruct
-        find: |
-          homareadachi
-        replace: |
-          homaretanmay
+        find: >
+          ['homareadachi']
+        replace: >
+          ['homaretanmay']
     - uses: ./.github/actions/godot-cache-restore
       with:
         cache-name: ${{ env.cache-name }}
