@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         path: actions
-    - run: ls actions
+    - run: ls actions/.github
     - uses: ./actions/.github/actions/replace.yml
       with:
         file: ./SConstruct
