@@ -35,7 +35,7 @@ jobs:
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
         scoop install gcc python scons make mingw
-        scons target=editor use_mingw=yes production=yes optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes disable_3d=yes
+        scons target=editor use_mingw=yes production=yes optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
     - uses: ./.github/actions/godot-cache-save
       with:
         cache-name: ${{ env.cache-name }}
