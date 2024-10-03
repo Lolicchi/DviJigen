@@ -15,7 +15,12 @@ runs:
   using: composite
   steps:
   - run: |
-      $i=(Get-Content ${{ inputs.file }} -raw); $i; $i.GetType()
-      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace(${{ inputs.find }}, ${{ inputs.replace }})
+        $find = @"
+        ${{ inputs.find }}
+        "@
+        $replace = @"
+        ${{ inputs.replace }}
+        "@
+      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace($find, $replace)
       (Get-Content ${{ inputs.file }} -raw)
     shell: pwsh
