@@ -16,7 +16,8 @@ runs:
   steps:
   - run: |
       echo ${{ inputs.find }}
-      echo Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}', '${{ inputs.replace }}')
+      echo (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}', '${{ inputs.replace }}')
       Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}', '${{ inputs.replace }}')
-      echo Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}', '${{ inputs.replace }}')
+      echo '9'
+      echo Get-Content ${{ inputs.file }} -raw
     shell: pwsh
