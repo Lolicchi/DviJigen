@@ -15,6 +15,7 @@ runs:
   using: composite
   steps:
   - run: |
-      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine, (Get-Content ${{ inputs.file }} -raw)["`n"] ), '${{ inputs.replace }}')
+      [int][char](Get-Content ${{ inputs.file }} -raw)[21]
+      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine, (Get-Content ${{ inputs.file }} -raw)[[char]10] ), '${{ inputs.replace }}')
       Get-Content ${{ inputs.file }} -raw
     shell: pwsh
