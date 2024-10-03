@@ -15,6 +15,6 @@ runs:
   using: composite
   steps:
   - run: |
-      echo ${{ inputs.find }}
+      echo '${{ inputs.find }}'
       (Get-Content ${{ inputs.file }}) -replace '${{ inputs.find }}', '${{ inputs.replace }}' | Set-Content ${{ inputs.file }}
     shell: pwsh
