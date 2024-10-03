@@ -16,7 +16,7 @@ runs:
   steps:
   - run: |
       $content = Get-Content ${{ inputs.file }} -raw
-      $find = '${{ inputs.find }}'.split([Environment]::NewLine)
+      $find = '${{ inputs.find }}'.trimEnd().split([Environment]::NewLine)
       $replace = '${{ inputs.replace }}'.split([Environment]::NewLine)
       for ($i = 0; $i -lt $find.Length; $i++) {
         echo $i
