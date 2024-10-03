@@ -16,12 +16,10 @@ runs:
   steps:
   - run: |
       $file = Get-Content ${{ inputs.file }} -raw
-      $find = ${{ inputs.find }}.Split('\n')
-      $replace = ${{ inputs.replace }}.Split('\n')
+      $find = '${{ inputs.find }}'.Split('\n')
+      $replace = '${{ inputs.replace }}'.Split('\n')
       for ($i = 0; $i -lt $find.length; $i++) {
-        $f = $find[$i]
-        $r = $replace[$i]
-        $file = $file.replace($f, $r)
+        $file = $file.replace($find[$i], $replace[$i])
       }
       Set-Content ${{ inputs.file }} $file
       (Get-Content ${{ inputs.file }} -raw)
