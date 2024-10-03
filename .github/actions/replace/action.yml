@@ -15,12 +15,13 @@ runs:
   using: composite
   steps:
   - run: |
-      $file = Get-Content ${{ inputs.file }} -raw
+      $content = Get-Content ${{ inputs.file }} -raw
       $find = '${{ inputs.find }}'.split('\n')
       $replace = '${{ inputs.replace }}'.split('\n')
       for ($i = 0; $i -lt $find.length; $i++) {
-        $file = $file.replace($find[$i], $replace[$i])
+        $content = $content.replace($find[$i], $replace[$i])
       }
+      $find.length
       Set-Content ${{ inputs.file }} $file
       (Get-Content ${{ inputs.file }} -raw)
     shell: pwsh
