@@ -32,9 +32,9 @@ jobs:
       with:
         file: ./SConstruct
         find: |
-          homareadachi, homareadatchi
+          'homareadachi', 'homareadatchi'
         replace: |
-          homareatanmay, homarextanmay
+          'homareatanmay', homarextanmay'
     - uses: ./.github/actions/godot-cache-restore
       with:
         cache-name: ${{ env.cache-name }}
