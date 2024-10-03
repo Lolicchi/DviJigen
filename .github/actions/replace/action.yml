@@ -19,7 +19,9 @@ runs:
       $find = ${{ inputs.find }}.Split('\n')
       $replace = ${{ inputs.replace }}.Split('\n')
       for ($i = 0; $i -lt $find.length; $i++) {
-        $file = $file.replace($find[$i], $replace[$i])
+        $f = $find[$i]
+        $r = $replace[$i]
+        $file = $file.replace($f, $r)
       }
       Set-Content ${{ inputs.file }} $file
       (Get-Content ${{ inputs.file }} -raw)
