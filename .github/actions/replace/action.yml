@@ -15,9 +15,11 @@ runs:
   using: composite
   steps:
   - run: |
-      '${{ inputs.find }}'.replace([Environment]::NewLine, '\n')
+      '${{ inputs.find }}'.replace([Environment]::NewLine, '`n')
       '9'
       [Environment]::NewLine
-      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine, '`n'), '${{ inputs.replace }}')
+      '9'
+      (Get-Content ${{ inputs.file }} -raw)[43275]
+      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine, (Get-Content ${{ inputs.file }} -raw)[43275] ), '${{ inputs.replace }}')
       Get-Content ${{ inputs.file }} -raw
     shell: pwsh
