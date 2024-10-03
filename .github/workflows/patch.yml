@@ -31,12 +31,11 @@ jobs:
     - uses: ./DviJigen/.github/actions/replace
       with:
         file: ./SConstruct
-        find: ${{ env.find }}
-        replace: ${{ env.replace }}
+        find: |
+          homareadachi, homareadatchi
+        replace: |
+          homareatanmay, homarextanmay
     - uses: ./.github/actions/godot-cache-restore
-      env:
-        find: ${{ fromJSON('["homareadachi"]') }}
-        replace: ${{ fromJSON('["homaretanmei"]') }}
       with:
         cache-name: ${{ env.cache-name }}
       continue-on-error: true
