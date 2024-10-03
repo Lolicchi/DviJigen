@@ -2,11 +2,11 @@ name: DviJigen
 on:
   workflow_dispatch:
 env:
-  scons-cache: ${ {github.workspace }}/.scons-cache/
+  scons-cache: ${{ github.workspace }}/.scons-cache/
   cache-name: windows-editor
   GODOT_BASE_BRANCH: 4.3-stable
 concurrency:
-  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows
+  group: ci-${{ github.actor }}-${{ github.head_ref || github.run_number }}-${{ github.ref }}-windows
   cancel-in-progress: true
 jobs:
   compile:
@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: godotengine/godot
-        ref: ${{env.GODOT_BASE_BRANCH}}
+        ref: ${{ env.GODOT_BASE_BRANCH }}
         submodules: recursive
     - uses: actions/checkout@v4
       with:
