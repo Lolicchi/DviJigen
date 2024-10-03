@@ -18,7 +18,7 @@ runs:
       ${{ inputs.find }}
       $content = Get-Content ${{ inputs.file }} -raw
       for ($i = 0; $i -lt ${{ inputs.find }}.length; $i++) {
-        $content = $content -replace ('${{ inputs.find }}[$i]' -replace [Environment]::NewLine, "`n"), '${{ inputs.replace }}[$i]'
+        $content = $content -replace (${{ inputs.find }}[$i] -replace [Environment]::NewLine, "`n"), ${{ inputs.replace }}[$i]
       }
       Set-Content ${{ inputs.file }} $content
     shell: pwsh
