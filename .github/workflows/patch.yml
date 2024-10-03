@@ -38,6 +38,7 @@ jobs:
       with:
         file: ./SConstruct
         find: ${{ fromJSON(steps.replace-1.env.find) }}
+        replace: ${{ fromJSON(steps.replace-1.env.replace) }}
     - uses: ./.github/actions/godot-cache-restore
       with:
         cache-name: ${{ env.cache-name }}
