@@ -15,12 +15,12 @@ runs:
   using: composite
   steps:
   - run: |
-        $find = @"
-        ${{ inputs.find }}
-        "@
-        $replace = @"
-        ${{ inputs.replace }}
-        "@
+      $find = @"
+      ${{ inputs.find }}
+      "@
+      $replace = @"
+      ${{ inputs.replace }}
+      "@
       Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace($find, $replace)
       (Get-Content ${{ inputs.file }} -raw)
     shell: pwsh
