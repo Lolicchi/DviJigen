@@ -1,9 +1,14 @@
+name: Replace text
+description: Replace text
 inputs:
   file:
+    description: File path
     required: true
   find:
+    description: Text to find
     required: true
   replace:
+    description: Text to replace
     required: true
 
   runs:
