@@ -17,9 +17,10 @@ runs:
   - run: |
       $content = Get-Content ${{ inputs.file }} -raw
       $find = '${{ inputs.find }}'.split('\n')
-      echo $find
       $replace = '${{ inputs.replace }}'.split('\n')
-      for ($i = 0; $i -lt $find.length; $i++) {
+      for ($i = 0; $i -lt $find.Length; $i++) {
+        echo $i
+        echo $find[$i]
         $content = $content.replace($find[$i], $replace[$i])
       }
       Set-Content ${{ inputs.file }} $content
