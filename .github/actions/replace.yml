@@ -1,0 +1,12 @@
+inputs:
+  file:
+    required: true
+  find:
+    required: true
+  replace:
+    required: true
+
+  runs:
+    using: composite
+    steps:
+      run: (Get-Content ${{ inputs.file }}) -replace ${{ inputs.find }}, ${{ inputs.replace }} | Set-Content ${{ inputs.file }}
