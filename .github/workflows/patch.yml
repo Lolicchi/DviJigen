@@ -24,13 +24,9 @@ jobs:
       with:
         file: ./SConstruct
         find: |
-          if env.editor_build:
-                  print_error("Build option `disable_3d=yes` cannot be used for editor builds, only for export template builds.")
-                  Exit(255)
+          homareadachi
         replace: |
-          if env.editor_build:
-                  print_error("Build option `disable_3d=yes` cannot be used for editor builds, only for export template builds.")
-                  # Exit(255)
+          homaretanmay
     - uses: ./.github/actions/godot-cache-restore
       with:
         cache-name: ${{ env.cache-name }}
@@ -39,7 +35,7 @@ jobs:
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
         scoop install gcc python scons make mingw
-        scons target=editor use_mingw=yes production=yes lto=full optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes disable_3d=yes
+        scons target=editor use_mingw=yes production=yes optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes disable_3d=yes
     - uses: ./.github/actions/godot-cache-save
       with:
         cache-name: ${{ env.cache-name }}
