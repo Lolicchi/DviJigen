@@ -15,7 +15,7 @@ runs:
   using: composite
   steps:
   - run: |
-      $find=${{ inputs.find }}; (Get-Content ${{ inputs.file }} -raw).indexOf($find)
+      $i=(Get-Content ${{ inputs.file }} -raw).indexOf(${{ inputs.find }}); $i; $i.GetType()
       Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace(${{ inputs.find }}, ${{ inputs.replace }})
       (Get-Content ${{ inputs.file }} -raw)
     shell: pwsh
