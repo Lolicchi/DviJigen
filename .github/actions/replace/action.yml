@@ -22,5 +22,5 @@ runs:
         $content = $content.replace($find[$i], $replace[$i])
       }
       Set-Content ${{ inputs.file }} $file
-      (Get-Content ${{ inputs.file }} -raw)
+      Get-Content ${{ inputs.file }} -raw
     shell: pwsh
