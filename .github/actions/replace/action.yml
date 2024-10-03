@@ -19,7 +19,7 @@ runs:
       '9'
       [Environment]::NewLine
       '9'
-      (Get-Content ${{ inputs.file }} -raw)[43275]
-      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine, (Get-Content ${{ inputs.file }} -raw)[43275] ), '${{ inputs.replace }}')
+      (Get-Content ${{ inputs.file }} -raw)[21]
+      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine, (Get-Content ${{ inputs.file }} -raw)[21] ), '${{ inputs.replace }}')
       Get-Content ${{ inputs.file }} -raw
     shell: pwsh
