@@ -32,9 +32,9 @@ jobs:
       id: replace-1
       env:
         find: >
-          ['homareadachi']
+          ["homareadachi"]
         replace: >
-          ['homaretanmay']
+          ["homaretanmay"]
       with:
         file: ./SConstruct
         find: ${{ fromJSON(steps.replace-1.env.find) }}
