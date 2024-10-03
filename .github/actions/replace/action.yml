@@ -18,6 +18,6 @@ runs:
       '${{ inputs.find }}'.replace([Environment]::NewLine, '\n')
       '9'
       [Environment]::NewLine
-      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine, '\n'), '${{ inputs.replace }}')
+      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine, '`n'), '${{ inputs.replace }}')
       Get-Content ${{ inputs.file }} -raw
     shell: pwsh
