@@ -35,8 +35,8 @@ jobs:
         replace: '["homaretanmay"]'
       with:
         file: ./SConstruct
-        find: ${{ fromJSON(steps.replace-1.env.find) }}
-        replace: ${{ fromJSON(steps.replace-1.env.replace) }}
+        find: ${{ fromJSON('["homareadachi"]') }}
+        replace: ${{ fromJSON('["homaretanmay"]') }}
     - uses: ./.github/actions/godot-cache-restore
       with:
         cache-name: ${{ env.cache-name }}
