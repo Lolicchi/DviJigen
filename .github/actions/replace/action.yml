@@ -15,14 +15,6 @@ runs:
   using: composite
   steps:
   - run: |
-      $content = Get-Content ${{ inputs.file }} -raw
-      $find = '${{ inputs.find }}'.trimEnd().split([Environment]::NewLine)
-      $replace = '${{ inputs.replace }}'.split([Environment]::NewLine)
-      for ($i = 0; $i -lt $find.Length; $i++) {
-        echo $i
-        echo $find[$i]
-        $content = $content.replace($find[$i], $replace[$i])
-      }
-      Set-Content ${{ inputs.file }} $content
+      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).replace('${{ inputs.find }}'.replace([Environment]::NewLine), '${{ inputs.replace }}')
       Get-Content ${{ inputs.file }} -raw
     shell: pwsh
