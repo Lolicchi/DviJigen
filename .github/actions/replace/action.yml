@@ -15,3 +15,4 @@ runs:
   using: composite
   steps:
   - run: (Get-Content ${{ inputs.file }}) -replace [regex]::Escape(${{ inputs.find }}), ${{ inputs.replace }} | Set-Content ${{ inputs.file }}
+    shell: pwsh
