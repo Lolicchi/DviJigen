@@ -31,10 +31,8 @@ jobs:
     - uses: ./DviJigen/.github/actions/replace
       id: replace-1
       env:
-        find: >
-          ["homareadachi"]
-        replace: >
-          ["homaretanmay"]
+        find: '["homareadachi"]'
+        replace: '["homaretanmay"]'
       with:
         file: ./SConstruct
         find: ${{ fromJSON(steps.replace-1.env.find) }}
