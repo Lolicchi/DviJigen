@@ -16,6 +16,6 @@ runs:
   steps:
   - run: |
       ${{ inputs.find }}
-      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -Raw).replace(${{ inputs.find }}, ${{ inputs.replace }})
+      Set-Content ${{ inputs.file }} (Get-Content ${{ inputs.file }} -raw).indexOf(${{ inputs.find }})
       (Get-Content ${{ inputs.file }} -Raw)
     shell: pwsh
