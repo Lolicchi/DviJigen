@@ -13,6 +13,8 @@ on:
 env:
   cache-name: windows-editor
   GODOT_BASE_BRANCH: ${{ inputs.godot-release }}
+  find: '["homareadachi"]'
+  replace: '["homaretanmay"]'
 concurrency:
   group: ci-${{ github.actor }}-${{ github.head_ref || github.run_number }}-${{ github.ref }}-windows
   cancel-in-progress: true
@@ -29,14 +31,10 @@ jobs:
       with:
         path: DviJigen
     - uses: ./DviJigen/.github/actions/replace
-      id: replace-1
-      env:
-        find: '["homareadachi"]'
-        replace: '["homaretanmay"]'
       with:
         file: ./SConstruct
-        find: ${{ fromJSON('["homareadachi"]') }}
-        replace: ${{ fromJSON('["homaretanmay"]') }}
+        find: ${{ fromJSON(env.find) }}
+        replace: ${{ fromJSON(env.replace) }}
     - uses: ./.github/actions/godot-cache-restore
       with:
         cache-name: ${{ env.cache-name }}
