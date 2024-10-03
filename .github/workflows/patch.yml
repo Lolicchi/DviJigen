@@ -1,9 +1,18 @@
 name: DviJigen
 on:
   workflow_dispatch:
+    inputs:
+      godot-release:
+        description: Godot release
+        default: 4.3-stable
+        required: true
+      scons-flags:
+        description: SCons flags
+        default: target=editor use_mingw=yes production=yes optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
+        required: true
 env:
   cache-name: windows-editor
-  GODOT_BASE_BRANCH: 4.3-stable
+  GODOT_BASE_BRANCH: ${{ inputs.godot-release }}
 concurrency:
   group: ci-${{ github.actor }}-${{ github.head_ref || github.run_number }}-${{ github.ref }}-windows
   cancel-in-progress: true
@@ -14,7 +23,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: godotengine/godot
-        ref: ${{ env.GODOT_BASE_BRANCH }}
+        ref: ${{ inputs.godot-release }}
         submodules: recursive
     - uses: actions/checkout@v4
       with:
@@ -34,7 +43,7 @@ jobs:
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
         scoop install gcc python scons make mingw
-        scons target=editor use_mingw=yes production=yes optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
+        scons ${{ inputs.scons-flags }}
     - uses: ./.github/actions/godot-cache-save
       with:
         cache-name: ${{ env.cache-name }}
