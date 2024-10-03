@@ -2,9 +2,12 @@ name: DviJigen
 on:
   workflow_dispatch:
 env:
-  scons-cache: ${{github.workspace}}/.scons-cache/
-  cache-name: ${{github.job}}
+  scons-cache: ${ {github.workspace }}/.scons-cache/
+  cache-name: windows-editor
   GODOT_BASE_BRANCH: 4.3-stable
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows
+  cancel-in-progress: true
 jobs:
   compile:
     runs-on: windows-latest
@@ -28,26 +31,20 @@ jobs:
           if env.editor_build:
                   print_error("Build option `disable_3d=yes` cannot be used for editor builds, only for export template builds.")
                   # Exit(255)
-    - uses: actions/cache/restore@v4
+    - uses: ./.github/actions/godot-cache-restore
       with:
-        path: ${{env.scons-cache}}
-        key: ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
-        restore-keys: |
-          ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
-          ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
-          ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-refs/heads/${{env.GODOT_BASE_BRANCH}}
-          ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}
-    -  run: |
+        cache-name: ${{ env.cache-name }}
+      continue-on-error: true
+    - run: |
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
         scoop install gcc python scons make mingw
         scons target=editor use_mingw=yes production=yes lto=full optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes disable_3d=yes
-    - uses: actions/cache/save@v4
+    - uses: ./.github/actions/godot-cache-save
       with:
-        path: ${{env.scons-cache}}
-        key: ${{env.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+        cache-name: ${{ env.cache-name }}
+      continue-on-error: true
     - run: Remove-Item bin/* -Include *.exp,*.lib,*.pdb -Force
-    - uses: actions/upload-artifact@v4
+    - uses: ./.github/actions/upload-artifact
       with:
-        name: ${{ github.job }}
-        path: bin/*
+        name: ${{ env.cache-name }}
