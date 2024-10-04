@@ -18,26 +18,26 @@ jobs:
         path: ${{ env.cache }}
         key: ${{ env.name }}
       continue-on-error: true
-    - run: |
+    - run: >
         foreach (
-          $file in ('custom.py', '# target = ''editor''
-        # use_mingw = ''yes''
-        # use_llvm = ''yes''
-        # production = ''yes''
-        # lto = ''full''
-        # optimize = ''speed_trace''
-        # module_text_server_adv_enabled = ''no''
-        # module_text_server_fb_enabled = ''yes''
-        # deprecated = ''no''
-        # precision = ''double''
-        # xaudio2 = ''yes''
-        # warnings = ''extra''
-        # extra_suffix = ''${{ github.repository }}''.split(''/'')[-1]
-        # use_precise_math_checks = ''yes''
-        # steamapi = ''yes''
-        # target_win_version = ''0x0a00''
-        # windows_subsystem = ''console''
-        # use_static_cpp = ''no''
+          $file in ('custom.py', '# target = ''editor''[Environment]::NewLine
+        # use_mingw = ''yes''[Environment]::NewLine
+        # use_llvm = ''yes''[Environment]::NewLine
+        # production = ''yes''[Environment]::NewLine
+        # lto = ''full''[Environment]::NewLine
+        # optimize = ''speed_trace''[Environment]::NewLine
+        # module_text_server_adv_enabled = ''no''[Environment]::NewLine
+        # module_text_server_fb_enabled = ''yes''[Environment]::NewLine
+        # deprecated = ''no''[Environment]::NewLine
+        # precision = ''double''[Environment]::NewLine
+        # xaudio2 = ''yes''[Environment]::NewLine
+        # warnings = ''extra''[Environment]::NewLine
+        # extra_suffix = ''${{ github.repository }}''.split(''/'')[-1][Environment]::NewLine
+        # use_precise_math_checks = ''yes''[Environment]::NewLine
+        # steamapi = ''yes''[Environment]::NewLine
+        # target_win_version = ''0x0a00''[Environment]::NewLine
+        # windows_subsystem = ''console''[Environment]::NewLine
+        # use_static_cpp = ''no''[Environment]::NewLine
         # use_asan = ''yes'''),
           ('a', 'a')
         ) {
