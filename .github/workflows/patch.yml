@@ -41,7 +41,7 @@ jobs:
         # use_asan = ''yes'''),
           ('a', 'a')
         ) {
-          out-file ./$($file[0]) -noclobber -value $file[1]
+          out-file ./$($file[0]) -noclobber -inputobject $file[1]
         }
     - run: |
         invoke-restmethod -uri https://get.scoop.sh | invoke-expression
