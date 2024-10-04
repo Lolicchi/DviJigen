@@ -43,6 +43,7 @@ jobs:
         ) {
           out-file ./$($file[0]) -noclobber -inputobject $file[1]
         }
+        get-content ./custom.py -raw
     - run: |
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
         scoop install gcc python scons make mingw
