@@ -32,7 +32,6 @@ jobs:
         key: ${{ env.cache-name }}
       continue-on-error: true
     - run: |
-        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
         scoop install gcc python scons make mingw
         scons --help
