@@ -42,6 +42,69 @@ jobs:
           ('a', 'a')
         ) { out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n") }
     - run: |
+        foreach (
+          $file in @{
+            'scenes/2d/physics/collision_object_2d.h' = , (
+              'class CollisionObject2D : public Node2D {
+        	GDCLASS(CollisionObject2D, Node',
+               'class Entity2D : public Node2D {
+        	GDCLASS(Entity2D, Node2D);
+        
+        private:
+          String entity_name;
+        
+        protected:
+        	static void _bind_methods();
+
+        public:
+        	void set_entity_name(const String &p_string);
+        	String get_entity_name() const;
+
+        	Entity2D();
+        	~Entity2D();
+        };
+
+        class CollisionObject2D : public Entity2D {
+        	GDCLASS(CollisionObject2D, Entity'
+            )
+            'scenes/2d/physics/collision_object_2d.cpp' = , (
+              '#include "scene/resources/world_2d.h"',
+              '#include "scene/resources/world_2d.h"
+        
+        void Entity2D::set_entity_name(const String &p_string) {
+        	entity_name = p_string;
+        }
+        
+        String Entity2D::get_entity_name() const {
+        	return entity_name;
+        }
+        
+	        ClassDB::bind_method(D_METHOD("set_entity_name", "entity"), &Entity2D::set_entity_name);
+	        classDB::bind_method(D_METHOD("get_entity_name"), &Entity2D::get_entity_name);
+        
+        	ADD_GROUP("Entity", "entity_");
+        	ADD_PROPERTY(PropertyInfo(Variant::STRING, "entity_name", PROPERTY_HINT_MULTILINE_TEXT), "set_entity_name", "get_entity_name");
+        }
+        
+        Entity2D::Entity2D() {}
+        
+        Entity2D::~Entity2D() {}'
+            )
+            '' = , (
+              'CollisionObject',
+              'Entity2D);
+        	GDREGISTER_ABSTRACT_CLASS(CollisionObject'
+            )
+            
+          }.getenumerator()
+        ) {
+          $content = get-content $file.key -raw
+          foreach ($file in $file.value) {
+            $content = $content -replace ($file[0] -replace [Environment]::NewLine, "`n"), ($file[1] -replace [Environment]::NewLine, "`n")
+          }
+          set-content ${{ inputs.file }} $content
+        }
+    - run: |
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
         scoop install gcc python scons make mingw
         scons --help
