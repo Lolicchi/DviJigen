@@ -18,7 +18,7 @@ jobs:
         path: ${{ env.cache }}
         key: ${{ env.name }}
       continue-on-error: true
-    - run: >
+    - run: |
         foreach (
           $file in ('custom.py', 'target = ''editor''
         # use_mingw = ''yes''
