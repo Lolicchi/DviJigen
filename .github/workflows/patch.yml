@@ -79,8 +79,8 @@ jobs:
         	return entity_name;
         }
         
-	        ClassDB::bind_method(D_METHOD("set_entity_name", "entity"), &Entity2D::set_entity_name);
-	        classDB::bind_method(D_METHOD("get_entity_name"), &Entity2D::get_entity_name);
+        	ClassDB::bind_method(D_METHOD("set_entity_name", "entity"), &Entity2D::set_entity_name);
+        	ClassDB::bind_method(D_METHOD("get_entity_name"), &Entity2D::get_entity_name);
         
         	ADD_GROUP("Entity", "entity_");
         	ADD_PROPERTY(PropertyInfo(Variant::STRING, "entity_name", PROPERTY_HINT_MULTILINE_TEXT), "set_entity_name", "get_entity_name");
