@@ -40,7 +40,7 @@ jobs:
         use_static_cpp = ''no''
         use_asan = ''yes'''),
         ('a', 'a')) {
-          Out-File ./$($file[0]) $file[1]
+          $file[1] | Out-File ./$($file[0])
         }
     - run: |
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
