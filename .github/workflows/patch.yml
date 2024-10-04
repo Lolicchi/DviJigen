@@ -11,6 +11,7 @@ on:
         default: target=editor use_mingw=yes production=yes optimize=speed module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
         required: true
 env:
+  scons-cache: ./scons-cache/
   cache-name: windows-editor
   GODOT_BASE_BRANCH: ${{ inputs.godot-release }}
 concurrency:
@@ -25,30 +26,24 @@ jobs:
         repository: godotengine/godot
         ref: ${{ inputs.godot-release }}
         submodules: recursive
-    - uses: actions/checkout@v4
+    - uses: actions/cache/restore@v4
       with:
-        path: DviJigen
-    - uses: ./DviJigen/.github/actions/replace
-      with:
-        file: ./SConstruct
-        find: |
-          'homareadachi', 'homareadatchi'
-        replace: |
-          'homareatanmay', 'homarextanmay'
-    - uses: ./.github/actions/godot-cache-restore
-      with:
-        cache-name: ${{ env.cache-name }}
+        path: ${{ env.scons-cache }}
+        key: ${{ env.cache-name }}
       continue-on-error: true
     - run: |
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
         scoop install gcc python scons make mingw
+        scons --help
         scons ${{ inputs.scons-flags }}
-    - uses: ./.github/actions/godot-cache-save
+    - uses: actions/cache/restore@v4
       with:
-        cache-name: ${{ env.cache-name }}
+        path: ${{ env.scons-cache }}
+        key: ${{ env.cache-name }}
       continue-on-error: true
     - run: Remove-Item bin/* -Include *.exp,*.lib,*.pdb -Force
-    - uses: ./.github/actions/upload-artifact
+    - uses: actions/upload-artifact@v4
       with:
         name: ${{ env.cache-name }}
+        path: bin/*
