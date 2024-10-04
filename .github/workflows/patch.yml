@@ -32,7 +32,7 @@ jobs:
         precision = ''double''
         xaudio2 = ''yes''
         warnings = ''extra''
-        extra_suffix = ''dvijigen''
+        # extra_suffix = ''dvijigen''
         use_precise_math_checks = ''yes''
         steamapi = ''yes''
         target_win_version = ''0x0a00''
@@ -44,7 +44,7 @@ jobs:
           out-file ./$($file[0]) -noclobber -inputobject $file[1]
         }
     - run: |
-        invoke-restmethod -uri https://get.scoop.sh | invoke-expression
+        invoke-expression invoke-restmethod -uri https://get.scoop.sh
         scoop install gcc python scons make mingw
         scons --help
         '9'
