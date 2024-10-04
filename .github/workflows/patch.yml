@@ -43,9 +43,9 @@ jobs:
         ) { out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n") }
     - run: |
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
-        scoop install gcc python scons make mingw-mstorsjo-llvm-ucrt
+        scoop install gcc python scons make mingw
         scons --help
-        scons use_mingw=yes use_llvm=yes production=yes lto=full optimize=speed_trace module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
+        scons use_mingw=yes production=yes lto=full optimize=speed_trace module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
     - uses: actions/cache/save@v4
       with:
         path: ${{ env.cache }}
