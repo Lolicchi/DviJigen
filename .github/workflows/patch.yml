@@ -100,6 +100,7 @@ jobs:
         ) {
           $content = get-content $file.key -raw
           foreach ($file in $file.value) {
+            ls
             $content = $content -replace ($file[0] -replace [Environment]::NewLine, "`n"), ($file[1] -replace [Environment]::NewLine, "`n")
           }
           set-content ${{ inputs.file }} $content
