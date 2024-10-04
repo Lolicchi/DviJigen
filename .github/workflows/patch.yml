@@ -20,7 +20,7 @@ jobs:
       continue-on-error: true
     - run: |
         foreach (
-          $file in ('custom.py', 'target = ''editor''; use_mingw = ''yes''
+          $file in ('customs.py', 'target = ''editor''; use_mingw = ''yes''
         # use_llvm = ''yes''
         # production = ''yes''
         # lto = ''full''
