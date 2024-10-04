@@ -22,12 +22,12 @@ jobs:
         foreach (
           $file in ('custom.py', 'target = ''editor''
         use_mingw = ''yes''
-        use_llvm = ''yes''
-        # production = ''yes''
-        # lto = ''full''
-        # optimize = ''speed_trace''
-        # module_text_server_adv_enabled = ''no''
-        # module_text_server_fb_enabled = ''yes''
+        # use_llvm = ''yes''
+        production = ''yes''
+        lto = ''full''
+        optimize = ''speed_trace''
+        module_text_server_adv_enabled = ''no''
+        module_text_server_fb_enabled = ''yes''
         # deprecated = ''no''
         # precision = ''double''
         # xaudio2 = ''yes''
@@ -45,7 +45,7 @@ jobs:
         }
     - run: |
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
-        scoop install gcc python scons make mingw-mstorsjo-llvm-ucrt
+        scoop install gcc python scons make mingw
         scons --help
         scons
     - uses: actions/cache/save@v4
