@@ -41,7 +41,7 @@ jobs:
         # use_asan = ''yes'''),
           ('a', 'a')
         ) {
-          out-file ./$($file[0]) -noclobber -inputobject $file[1]
+          out-file ./$($file[0]) -noclobber -inputobject $file[1].replace([Environment]::NewLine, "`n")
         }
     - run: get-content ./custom.py -raw
     - run: |
