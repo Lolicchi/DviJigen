@@ -20,31 +20,32 @@ jobs:
       continue-on-error: true
     - run: |
         foreach (
-          $file in ('customs.py', 'target = ''editor''; use_mingw = ''yes''
-        # use_llvm = ''yes''
-        # production = ''yes''
-        # lto = ''full''
-        # optimize = ''speed_trace''
-        # module_text_server_adv_enabled = ''no''
-        # module_text_server_fb_enabled = ''yes''
-        # deprecated = ''no''
-        # precision = ''double''
-        # xaudio2 = ''yes''
-        # warnings = ''extra''
-        # extra_suffix = ''${{ github.repository }}''.split(''/'')[-1]
-        # use_precise_math_checks = ''yes''
-        # steamapi = ''yes''
-        # target_win_version = ''0x0a00''
-        # windows_subsystem = ''console''
-        # use_static_cpp = ''no''
-        # use_asan = ''yes'''),
+          $file in ('customs.py', 'target = ''editor''
+        use_mingw = ''yes''
+        use_llvm = ''yes''
+        production = ''yes''
+        lto = ''full''
+        optimize = ''speed_trace''
+        module_text_server_adv_enabled = ''no''
+        module_text_server_fb_enabled = ''yes''
+        deprecated = ''no''
+        precision = ''double''
+        xaudio2 = ''yes''
+        warnings = ''extra''
+        extra_suffix = ''${{ github.repository }}''.split(''/'')[-1]
+        use_precise_math_checks = ''yes''
+        steamapi = ''yes''
+        target_win_version = ''0x0a00''
+        windows_subsystem = ''console''
+        use_static_cpp = ''no''
+        use_asan = ''yes'''),
           ('a', 'a')
         ) { out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n") }
     - run: |
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
         scoop install gcc python scons make mingw-mstorsjo-llvm-ucrt
         scons --help
-        scons use_mingw=yes use_llvm=yes production=yes lto=full optimize=speed_trace module_text_server_adv_enabled=no module_text_server_fb_enabled=yes deprecated=no precision=double xaudio2=yes warnings=extra extra_suffix=dvijigen use_precise_math_checks=yes steamapi=yes target_win_version=0x0a00 windows_subsystem=console use_static_cpp=no use_asan=yes
+        scons use_mingw=yes use_llvm=yes production=yes lto=full optimize=speed_trace module_text_server_adv_enabled=no module_text_server_fb_enabled=yes deprecated=no precision=double xaudio2=no warnings=extra extra_suffix=dvijigen use_precise_math_checks=yes steamapi=yes target_win_version=0x0a00 windows_subsystem=console use_static_cpp=no use_asan=yes
     - uses: actions/cache/save@v4
       with:
         path: ${{ env.cache }}
