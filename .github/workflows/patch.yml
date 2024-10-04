@@ -3,8 +3,7 @@ on:
   workflow_dispatch:
 env:
   cache: ./cache/
-  cache-name: windows-editor
-  GODOT_BASE_BRANCH: ${{ inputs.godot-release }}
+  name: 4.3-stable
 jobs:
   compile:
     runs-on: windows-latest
@@ -12,12 +11,12 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: godotengine/godot
-        ref: ${{ inputs.godot-release }}
+        ref: ${{ env.name }}
         submodules: recursive
     - uses: actions/cache/restore@v4
       with:
         path: ${{ env.cache }}
-        key: ${{ env.cache-name }}
+        key: ${{ env.name }}
       continue-on-error: true
     - run: |
         foreach (
@@ -28,11 +27,11 @@ jobs:
         optimize = ''speed_trace''
         module_text_server_adv_enabled = ''no''
         module_text_server_fb_enabled = ''yes''
-        # deprecated = ''no''
+        deprecated = ''no''
         precision = ''double''
         xaudio2 = ''yes''
         warnings = ''extra''
-        extra_suffix = ''dvijigen''
+        extra_suffix = '${{ github.repository }}'
         use_precise_math_checks = ''yes''
         steamapi = ''yes''
         target_win_version = ''0x0a00''
@@ -52,10 +51,10 @@ jobs:
     - uses: actions/cache/save@v4
       with:
         path: ${{ env.cache }}
-        key: ${{ env.cache-name }}
+        key: ${{ env.name }}
       continue-on-error: true
     - run: Remove-Item bin/* -Include *.exp,*.lib,*.pdb -Force
     - uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.cache-name }}
+        name: ${{ env.name }}
         path: bin/*
