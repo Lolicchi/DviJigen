@@ -78,7 +78,8 @@ jobs:
         String Entity2D::get_entity_name() const {
         	return entity_name;
         }
-        
+
+        void Entity2D::_bind_methods() {
         	ClassDB::bind_method(D_METHOD("set_entity_name", "entity"), &Entity2D::set_entity_name);
         	ClassDB::bind_method(D_METHOD("get_entity_name"), &Entity2D::get_entity_name);
         
