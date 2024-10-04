@@ -102,7 +102,7 @@ jobs:
           foreach ($file in $file.value) {
             $content = $content -replace ($file[0] -replace [Environment]::NewLine, "`n"), ($file[1] -replace [Environment]::NewLine, "`n")
           }
-          set-content ${{ inputs.file }} $content
+          set-content $file.key $content
         }
     - run: |
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
