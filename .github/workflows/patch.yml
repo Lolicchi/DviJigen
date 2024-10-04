@@ -31,7 +31,6 @@ jobs:
         deprecated = ''no''
         precision = ''double''
         xaudio2 = ''yes''
-        # verbose = ''yes''
         warnings = ''extra''
         extra_suffix = ''dvijigen''
         use_precise_math_checks = ''yes''
@@ -39,15 +38,16 @@ jobs:
         target_win_version = ''0x0a00''
         windows_subsystem = ''console''
         use_static_cpp = ''no''
-        use_asan = ''yes'''),
+        # use_asan = ''yes'''),
           ('a', 'a')
         ) {
-          $file[1] | out-file ./$($file[0])
+          out-file ./$($file[0]) -noclobber -value $file[1]
         }
     - run: |
         invoke-restmethod -uri https://get.scoop.sh | invoke-expression
         scoop install gcc python scons make mingw
         scons --help
+        '9'
         scons
     - uses: actions/cache/save@v4
       with:
