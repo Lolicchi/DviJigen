@@ -40,7 +40,7 @@ jobs:
         # use_static_cpp = ''no''
         # use_asan = ''yes'''),
           ('a', 'a')
-        ) out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n")
+        ) { out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n") }
     - run: |
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
         scoop install gcc python scons make mingw
