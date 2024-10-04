@@ -38,7 +38,7 @@ jobs:
         # target_win_version = ''0x0a00''
         # windows_subsystem = ''console''
         # use_static_cpp = ''no''
-        # use_asan = ''yes'''.replace([Environment]::NewLine, "`n")),
+        # use_asan = ''yes'''),
           ('a', 'a')
         ) {
           out-file ./$($file[0]) -noclobber -inputobject $file[1]
