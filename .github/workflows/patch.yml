@@ -109,7 +109,6 @@ jobs:
         scoop install gcc python scons make mingw
         scons --help
         scons use_mingw=yes production=yes lto=full optimize=speed_trace module_text_server_adv_enabled=no module_text_server_fb_enabled=yes deprecated=no precision=double xaudio2=no warnings=extra extra_suffix=dvijigen use_precise_math_checks=yes steamapi=yes target_win_version=0x0a00 windows_subsystem=console use_static_cpp=no use_asan=yes
-    - run: mkdir ${{ env.cache }}
     - uses: actions/cache/save@v4
       with:
         path: ${{ env.cache }}
