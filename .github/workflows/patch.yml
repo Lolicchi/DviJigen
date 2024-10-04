@@ -2,7 +2,7 @@ name: DviJigen
 on:
   workflow_dispatch:
 env:
-  cache: ${{ github.workspace }}/cache/
+  cache: ${{ github.workspace }}/.scons-cache/
   name: 4.3-stable
 jobs:
   compile:
