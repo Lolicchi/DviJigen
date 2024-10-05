@@ -70,9 +70,9 @@ jobs:
         foreach (
           $file in @{
             'doc/classes/Node.xml' = , ('"MultiplayerAPI', '"SceneMultiplayer')
-            'scene/main/node.cpp' = , ('"MultiplayerAPI', '"SceneMultiplayer')
             'scene/main/node.h' = ('scene_tree.h"', 'scene_tree.h"
-            #include "modules/multiplayer/scene_multiplayer.h"'), ('MultiplayerAPI', 'SceneMultiplayer')
+        #include "modules/multiplayer/scene_multiplayer.h"'), ('MultiplayerAPI', 'SceneMultiplayer')
+            'scene/main/node.cpp' = , ('"MultiplayerAPI', '"SceneMultiplayer')
             'scene/2d/physics/collision_object_2d.h' = ('node', 'physics/entity'), ('Node', 'Entity')
             'scene/register_scene_types.cpp' = , (
               'CollisionObject',
@@ -87,6 +87,7 @@ jobs:
             $content = $content.replace([Regex]::Escape(($file.value[$i][0] -replace [Environment]::NewLine, "`n")), ($file.value[$i][1] -replace [Environment]::NewLine, "`n"))
           }
           set-content $file.key $content
+          $file.value[$i]
           get-content $file.key -raw
         }
     - run: |
