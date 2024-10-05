@@ -69,7 +69,10 @@ jobs:
     - run: |
         foreach (
           $file in @{
-            'doc/classes/Node.xml' = , ('"MultiplayerAPI', '"SceneMultiplayer')
+            'scu_builders.py' = ('process_folder(["modules/multiplayer"])', '// process_folder(["modules/multiplayer"])'), ('2d/physics"])', '2d/physics"])
+            process_folder(["modules/multiplayer"])')
+            'scene/main/node.h' = ('scene_tree.h"', 'scene_tree.h"
+        #include "modules/multiplayer/scene_multiplayer.h"'), ('MultiplayerAPI', 'SceneMultiplayer')
             'scene/main/node.cpp' = ('multiplayer_api.h"', 'multiplayer_api.h"
         #include "modules/multiplayer/scene_multiplayer.h"'), ('MultiplayerAPI', 'SceneMultiplayer')
             'scene/2d/physics/collision_object_2d.h' = ('node', 'physics/entity'), ('Node', 'Entity')
@@ -84,7 +87,6 @@ jobs:
           $content = get-content $file.key -raw
           for ($i = 0; $i -lt $file.value.length; $i++) {
             $content = $content -creplace [Regex]::Escape(($file.value[$i][0] -replace [Environment]::NewLine, "`n")), ($file.value[$i][1] -replace [Environment]::NewLine, "`n")
-            $file.value[$i]
           }
           set-content $file.key $content
           get-content $file.key -raw
