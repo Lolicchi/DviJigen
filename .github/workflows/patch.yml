@@ -20,37 +20,13 @@ jobs:
         key: ${{ env.name }}
       continue-on-error: true
     - run: |
-        foreach (
-          $file in ('customs.py', 'target = ''editor''
-        use_mingw = ''yes''
-        use_llvm = ''yes''
-        production = ''yes''
-        lto = ''full''
-        optimize = ''speed_trace''
-        module_text_server_adv_enabled = ''no''
-        module_text_server_fb_enabled = ''yes''
-        deprecated = ''no''
-        precision = ''double''
-        xaudio2 = ''yes''
-        warnings = ''extra''
-        extra_suffix = ''${{ github.repository }}''.split(''/'')[-1]
-        use_precise_math_checks = ''yes''
-        steamapi = ''yes''
-        target_win_version = ''0x0a00''
-        windows_subsystem = ''console''
-        use_static_cpp = ''no''
-        use_asan = ''yes'''),
-          ('a', 'a')
-        ) { out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n") }
-    - run: |
-        foreach (
-          $file in @{
-            'doc/classes/Node.xml' = , ('"MultiplayerAPI', '"SceneMultiplayer')
-            'scene/main/node.cpp' = , ('"MultiplayerAPI', '"SceneMultiplayer')
-            'scene/2d/physics/collision_object_2d.h' = , (
-              'class CollisionObject2D : public Node2D {
-        	GDCLASS(CollisionObject2D, Node',
-               'class Entity2D : public Node2D {
+        foreach ($file in
+          ('scene/2d/physics/entity_2d.h', '#ifndef ENTITY_2D_H
+        #define ENTITY_2D_H
+
+        #include "scene/2d/node_2d.h"
+        
+        class Entity2D : public Node2D {
         	GDCLASS(Entity2D, Node2D);
         
         private:
@@ -66,13 +42,9 @@ jobs:
         	Entity2D();
         	~Entity2D();
         };
-
-        class CollisionObject2D : public Entity2D {
-        	GDCLASS(CollisionObject2D, Entity'
-            )
-            'scene/2d/physics/collision_object_2d.cpp' = , (
-              'world_2d.h"',
-              'world_2d.h"
+        
+        #endif // Entity_2D_H'),
+        ('scene/2d/physics/entity_2d.cpp', '#include "entity_2d.h"
         
         void Entity2D::set_entity_name(const String &p_string) {
         	entity_name = p_string;
@@ -92,8 +64,16 @@ jobs:
         
         Entity2D::Entity2D() {}
         
-        Entity2D::~Entity2D() {}'
-            )
+        Entity2D::~Entity2D() {}')
+        ) { out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n") }
+    - run: |
+        foreach (
+          $file in @{
+            'doc/classes/Node.xml' = , ('"MultiplayerAPI', '"SceneMultiplayer')
+            'scene/main/node.cpp' = , ('"MultiplayerAPI', '"SceneMultiplayer')
+            'scene/main/node.h' = ('scene_tree.h"', 'scene_tree.h"
+            #include "modules/multiplayer/scene_multiplayer.h"'
+            'scene/2d/physics/collision_object_2d.h' = ('node', 'physics/entity'), ('Node', 'Entity')
             'scene/register_scene_types.cpp' = , (
               'CollisionObject',
               'Entity2D);
@@ -104,7 +84,7 @@ jobs:
         ) {
           $content = get-content $file.key -raw
           for ($i = 0; $i -lt $file.value.length; $i++) {
-            $content = $content -replace [Regex]::Escape(($file.value[$i][0] -replace [Environment]::NewLine, "`n")), ($file.value[$i][1] -replace [Environment]::NewLine, "`n")
+            $content = $content.replace([Regex]::Escape(($file.value[$i][0] -replace [Environment]::NewLine, "`n")), ($file.value[$i][1] -replace [Environment]::NewLine, "`n"))
           }
           set-content $file.key $content
           get-content $file.key -raw
