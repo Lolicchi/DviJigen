@@ -2,9 +2,9 @@ name: DviJigen
 on:
   workflow_dispatch:
 env:
-  SCONS_CACHE: ./cache/
+  SCONS_CACHE: cache
   SCONS_CACHE_LIMIT: 4096
-  name: 4.3-stable
+  GODOT_BASE_BRANCH: 4.3
 jobs:
   compile:
     runs-on: windows-latest
@@ -14,10 +14,7 @@ jobs:
         repository: godotengine/godot
         ref: ${{ env.name }}
         submodules: recursive
-    - uses: actions/cache/restore@v4
-      with:
-        path: ${{ env.SCONS_CACHE }}
-        key: ${{ env.name }}
+    - uses: ./.github/actions/godot-cache-restore
       continue-on-error: true
     - run: |
         foreach ($file in
@@ -25,13 +22,13 @@ jobs:
         #define ENTITY_2D_H
 
         #include "scene/2d/node_2d.h"
-        
+
         class Entity2D : public Node2D {
         	GDCLASS(Entity2D, Node2D);
-        
+
         private:
           String entity_name;
-        
+
         protected:
         	static void _bind_methods();
 
@@ -42,14 +39,14 @@ jobs:
         	Entity2D();
         	~Entity2D();
         };
-        
+
         #endif // Entity_2D_H'),
         ('scene/2d/physics/entity_2d.cpp', '#include "entity_2d.h"
-        
+
         void Entity2D::set_entity_name(const String &p_string) {
         	entity_name = p_string;
         }
-        
+
         String Entity2D::get_entity_name() const {
         	return entity_name;
         }
@@ -57,31 +54,21 @@ jobs:
         void Entity2D::_bind_methods() {
         	ClassDB::bind_method(D_METHOD("set_entity_name", "entity"), &Entity2D::set_entity_name);
         	ClassDB::bind_method(D_METHOD("get_entity_name"), &Entity2D::get_entity_name);
-        
+
         	ADD_GROUP("Entity", "entity_");
         	ADD_PROPERTY(PropertyInfo(Variant::STRING, "entity_name", PROPERTY_HINT_MULTILINE_TEXT), "set_entity_name", "get_entity_name");
         }
-        
+
         Entity2D::Entity2D() {}
-        
+
         Entity2D::~Entity2D() {}')
         ) { out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n") }
     - run: |
         foreach (
           $file in @{
-            'scu_builders.py' = ('process_folder(["modules/multiplayer"])', '# process_folder(["modules/multiplayer"])'), ('in"])', 'in"])
-            process_folder(["modules/multiplayer"])')
-            'scene/main/node.h' = ('scene_tree.h"', 'scene_tree.h"
-        #include "modules/multiplayer/scene_multiplayer.h"'), ('MultiplayerAPI', 'SceneMultiplayer')
-            'scene/main/node.cpp' = ('multiplayer_api.h"', 'multiplayer_api.h"
-        #include "modules/multiplayer/scene_multiplayer.h"'), ('MultiplayerAPI', 'SceneMultiplayer')
             'scene/2d/physics/collision_object_2d.h' = ('node', 'physics/entity'), ('Node', 'Entity')
-            'scene/register_scene_types.cpp' = , (
-              'CollisionObject',
-              'Entity2D);
-        	GDREGISTER_ABSTRACT_CLASS(CollisionObject'
-            )
-            
+            'scene/register_scene_types.cpp' = , ('CollisionObject', 'Entity2D);
+        	GDREGISTER_ABSTRACT_CLASS(CollisionObject')
           }.getenumerator()
         ) {
           $content = get-content $file.key -raw
@@ -89,20 +76,15 @@ jobs:
             $content = $content -creplace [Regex]::Escape(($file.value[$i][0] -replace [Environment]::NewLine, "`n")), ($file.value[$i][1] -replace [Environment]::NewLine, "`n")
           }
           set-content $file.key $content
-          get-content $file.key -raw
         }
     - run: |
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
         scoop install gcc python scons make mingw
         scons --help
         scons use_mingw=yes production=yes lto=full optimize=speed_trace module_text_server_adv_enabled=no module_text_server_fb_enabled=yes deprecated=no precision=double xaudio2=no warnings=extra extra_suffix=dvijigen use_precise_math_checks=yes steamapi=yes target_win_version=0x0a00 windows_subsystem=console use_static_cpp=no use_asan=yes
-    - uses: actions/cache/save@v4
-      with:
-        path: ${{ env.SCONS_CACHE }}
-        key: ${{ env.name }}
+    - uses: ./.github/actions/godot-cache-save
       continue-on-error: true
     - run: remove-item bin/* -include *.exp,*.lib,*.pdb -force
-    - uses: actions/upload-artifact@v4
+    - uses: ./.github/actions/upload-artifact
       with:
-        name: ${{ env.name }}
-        path: bin/*
+        name: windows-editor
