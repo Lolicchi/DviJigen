@@ -45,6 +45,7 @@ jobs:
     - run: |
         foreach (
           $file in @{
+            'scene/main/node.cpp' = , ('"MultiplayerAPI', '"SceneMultiplayer')
             'scene/2d/physics/collision_object_2d.h' = , (
               'class CollisionObject2D : public Node2D {
         	GDCLASS(CollisionObject2D, Node',
@@ -69,8 +70,8 @@ jobs:
         	GDCLASS(CollisionObject2D, Entity'
             )
             'scene/2d/physics/collision_object_2d.cpp' = , (
-              '#include "scene/resources/world_2d.h"',
-              '#include "scene/resources/world_2d.h"
+              'world_2d.h"',
+              'world_2d.h"
         
         void Entity2D::set_entity_name(const String &p_string) {
         	entity_name = p_string;
