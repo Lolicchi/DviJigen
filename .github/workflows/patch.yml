@@ -69,7 +69,7 @@ jobs:
     - run: |
         foreach (
           $file in @{
-            'scu_builders.py' = ('process_folder(["modules/multiplayer"])', '// process_folder(["modules/multiplayer"])'), ('2d/physics"])', '2d/physics"])
+            'scu_builders.py' = ('process_folder(["modules/multiplayer"])', '# process_folder(["modules/multiplayer"])'), ('2d/physics"])', '2d/physics"])
             process_folder(["modules/multiplayer"])')
             'scene/main/node.h' = ('scene_tree.h"', 'scene_tree.h"
         #include "modules/multiplayer/scene_multiplayer.h"'), ('MultiplayerAPI', 'SceneMultiplayer')
