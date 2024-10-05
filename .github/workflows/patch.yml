@@ -4,7 +4,7 @@ on:
 env:
   SCONS_CACHE: cache
   SCONS_CACHE_LIMIT: 4096
-  GODOT_BASE_BRANCH: 4.3
+  GODOT_BASE_BRANCH: 4.3-stable
 jobs:
   compile:
     runs-on: windows-latest
