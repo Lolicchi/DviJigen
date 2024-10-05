@@ -45,6 +45,7 @@ jobs:
     - run: |
         foreach (
           $file in @{
+            'doc/classes/Node.xml' = , ('"MultiplayerAPI', '"SceneMultiplayer')
             'scene/main/node.cpp' = , ('"MultiplayerAPI', '"SceneMultiplayer')
             'scene/2d/physics/collision_object_2d.h' = , (
               'class CollisionObject2D : public Node2D {
