@@ -72,7 +72,7 @@ jobs:
             'doc/classes/Node.xml' = , ('"MultiplayerAPI', '"SceneMultiplayer')
             'scene/main/node.cpp' = , ('"MultiplayerAPI', '"SceneMultiplayer')
             'scene/main/node.h' = ('scene_tree.h"', 'scene_tree.h"
-            #include "modules/multiplayer/scene_multiplayer.h"'
+            #include "modules/multiplayer/scene_multiplayer.h"'), ('MultiplayerAPI', 'SceneMultiplayer')
             'scene/2d/physics/collision_object_2d.h' = ('node', 'physics/entity'), ('Node', 'Entity')
             'scene/register_scene_types.cpp' = , (
               'CollisionObject',
