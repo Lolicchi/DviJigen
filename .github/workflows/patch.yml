@@ -8,7 +8,7 @@ env:
   args: >
     platform=windows
     target=editor
-    arch=
+    arch=x86_64
     dev_build=no
     optimize=speed_trace
     debug_symbols=no
