@@ -82,8 +82,9 @@ jobs:
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
         scoop install gcc python scons make mingw
         $opts = scons ${{ env.args }} --help -split [Environment]::NewLine + [Environment]::NewLine
-        $args = foreach ($arg in '${{ env.args }}' -split) { ($arg -split '=')[0] }
+        $args = foreach ($arg in '${{ env.args }}' -split ' ') { ($arg -split '=')[0] }
         foreach ($arg in $args) { $arg }
+        $opts
         scons ${{ env.args }} --help
         scons ${{ env.args }}
     - uses: ./.github/actions/godot-cache-save
