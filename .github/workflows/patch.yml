@@ -86,6 +86,8 @@ jobs:
         $opts = $opts[1..$opts.length]
         for ($i = 0; $i -lt $opts.length; $i++) {
           $opts[$i].startswith($args[$i])
+          $args[$i]
+          $opts[$i]
         }
         scons ${{ env.args }} --help
         scons ${{ env.args }}
