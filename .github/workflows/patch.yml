@@ -83,7 +83,7 @@ jobs:
         scoop install gcc python scons make mingw
         $opts = scons ${{ env.args }} --help -split [Environment]::NewLine + [Environment]::NewLine
         $args = foreach ($arg in ${{ env.args }} -split) { ($arg -split '=')[0] }
-        forach ($arg in $args) { $arg }
+        foreach ($arg in $args) { $arg }
         scons ${{ env.args }} --help
         scons ${{ env.args }}
     - uses: ./.github/actions/godot-cache-save
