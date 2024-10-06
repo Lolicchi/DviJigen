@@ -39,6 +39,8 @@ env:
     progress=yes
     warnings=extra
     werror=no
+    extra_suffix=${{ github.workflow }}
+    object_prefix=${{ github.workflow }}
 jobs:
   compile:
     runs-on: windows-latest
