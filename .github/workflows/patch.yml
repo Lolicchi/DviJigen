@@ -51,8 +51,8 @@ env:
     no_editor_splash=yes
     system_certs_path=
     use_precise_math_checks=yes
-    scu_build=yes
-    scu_limit=0
+    scu_build=no
+    scu_limit=
     engine_update_check=yes
     steamapi=yes
     builtin_brotli=yes
