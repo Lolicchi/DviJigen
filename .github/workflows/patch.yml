@@ -2,7 +2,7 @@ name: dvijigen
 on:
   workflow_dispatch:
 env:
-  SCONS_CACHE: cache/
+  SCONS_CACHE: .cache/
   SCONS_CACHE_LIMIT: 4096
   GODOT_BASE_BRANCH: 4.3
   args: >
@@ -40,7 +40,6 @@ env:
     warnings=extra
     werror=no
     extra_suffix=${{ github.workflow }}
-    object_prefix=${{ github.workflow }}
 jobs:
   compile:
     runs-on: windows-latest
