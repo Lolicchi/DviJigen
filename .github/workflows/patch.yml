@@ -28,7 +28,7 @@ env:
     openxr=no
     use_volk=yes
     disable_exceptions=yes
-    custom_modules= 
+    custom_modules=
     custom_modules_recursive=yes
     dev_mode=no
     tests=no
@@ -136,6 +136,7 @@ jobs:
         for ($i = 0; $i -lt $opts.length; $i++) {
           $opts[$i].startswith($args[$i])
         }
+        scons ${{ env.args }} --help
         scons ${{ env.args }}
     - uses: ./.github/actions/godot-cache-save
       with:
