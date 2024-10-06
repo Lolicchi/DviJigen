@@ -66,7 +66,6 @@ jobs:
 
         Entity2D::~Entity2D() {}')
         ) { out-file ./$($file[0]) -noclobber -inputobject ($file[1] -replace [Environment]::NewLine, "`n") }
-    - run: |
         foreach (
           $file in @{
             'scene/2d/physics/collision_object_2d.h' = ('node', 'physics/entity'), ('Node', 'Entity')
@@ -80,14 +79,13 @@ jobs:
           }
           set-content $file.key $content
         }
-    - run: invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
-    - run: scoop install gcc python scons make mingw
-    - run: |
+        invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
+        scoop install gcc python scons make mingw
         $opts = scons ${{ env.args }} --help -split [Environment]::NewLine + [Environment]::NewLine
         $args = foreach ($arg in ${{ env.args }} -split) { ($arg -split '=')[0] }
         forach ($arg in $args) { $arg }
-    - run: scons ${{ env.args }} --help
-    - run: scons ${{ env.args }}
+        scons ${{ env.args }} --help
+        scons ${{ env.args }}
     - uses: ./.github/actions/godot-cache-save
       with:
         scons-cache: ${{ env.SCONS_CACHE }}
