@@ -30,31 +30,6 @@ env:
     disable_exceptions=yes
     custom_modules=''
     custom_modules_recursive=yes
-    dev_mode=no
-    tests=no
-    fast_unsafe=no
-    ninja=no
-    compiledb=no
-    verbose=no
-    progress=yes
-    warnings=extra
-    werror=no
-    extra_suffix=${{ github.workflow }}
-    object_prefix=${{ github.workflow }}
-    vsproj=no
-    vsproj_name=
-    import_env_vars=
-    disable_3d=no
-    disable_advanced_gui=no
-    build_profile=
-    modules_enabled_by_default=yes
-    no_editor_splash=yes
-    system_certs_path=
-    use_precise_math_checks=yes
-    scu_build=no
-    scu_limit=
-    engine_update_check=yes
-    steamapi=yes
 jobs:
   compile:
     runs-on: windows-latest
