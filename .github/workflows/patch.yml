@@ -247,8 +247,8 @@ jobs:
         scoop install gcc python scons make mingw
         $args = foreach ($arg in '${{ env.args }}' -split ' ') { ($arg -split '=')[0] }
         $opts = (out-string -inputobject (scons --help)) -split ([Environment]::NewLine + [Environment]::NewLine)
-        $opts = $opts[1..$opts.length]
-        for ($i = 0; $i -lt $opts.length - 1; $i++) {
+        $opts = $opts[1..$opts.length - 1]
+        for ($i = 0; $i -lt $opts.length; $i++) {
           $opts[$i].startswith($args[$i])
         }
         scons ${{ env.args }}
