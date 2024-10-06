@@ -81,7 +81,7 @@ jobs:
         }
         invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
         scoop install gcc python scons make mingw
-        $opts = scons ${{ env.args }} --help -split '('
+        $opts = scons ${{ env.args }} --help -split 's'
         $args = foreach ($arg in '${{ env.args }}' -split ' ') { ($arg -split '=')[0] }
         foreach ($arg in $args) { $arg }
         $opts.length
