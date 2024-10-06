@@ -84,6 +84,7 @@ jobs:
         $opts = scons ${{ env.args }} --help -split [Environment]::NewLine + [Environment]::NewLine
         $args = foreach ($arg in '${{ env.args }}' -split ' ') { ($arg -split '=')[0] }
         foreach ($arg in $args) { $arg }
+        '9'
         $opts
         scons ${{ env.args }} --help
         scons ${{ env.args }}
