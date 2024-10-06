@@ -5,7 +5,7 @@ env:
   SCONS_CACHE: cache
   SCONS_CACHE_LIMIT: 4096
   GODOT_BASE_BRANCH: 4.3
-  args: use_mingw=yes production=yes lto=full optimize=speed_trace module_text_server_adv_enabled=no module_text_server_fb_enabled=yes deprecated=no precision=double fast_unsafe=yes ninja=yes xaudio2=no werror=no warnings=all extra_suffix=dvijigen use_precise_math_checks=yes steamapi=yes target_win_version=0x0a00 windows_subsystem=console use_static_cpp=no use_asan=yes
+  args: use_mingw=yes production=yes lto=full optimize=speed_trace module_text_server_adv_enabled=no module_text_server_fb_enabled=yes deprecated=no precision=double fast_unsafe=yes ninja=no xaudio2=no werror=no warnings=all extra_suffix=dvijigen use_precise_math_checks=yes steamapi=yes target_win_version=0x0a00 windows_subsystem=console use_static_cpp=no use_asan=yes
 jobs:
   compile:
     runs-on: windows-latest
@@ -80,12 +80,14 @@ jobs:
           }
           set-content $file.key $content
         }
+    - run: invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
+    - run: scoop install gcc python scons make mingw
     - run: |
-        invoke-expression (invoke-restmethod -uri https://get.scoop.sh)
-        scoop install gcc python scons make mingw
-        pip install ninja
-        scons ${{ env.args }} --help
-        scons ${{ env.args }}
+        $opts = scons ${{ env.args }} --help -split [Environment]::NewLine + [Environment]::NewLine
+        $args = foreach ($arg in ${{ env.args }} -split) { ($arg -split '=')[0] }
+        forach ($arg in $args) { $arg }
+    - run: scons ${{ env.args }} --help
+    - run: scons ${{ env.args }}
     - uses: ./.github/actions/godot-cache-save
       with:
         scons-cache: ${{ env.SCONS_CACHE }}
