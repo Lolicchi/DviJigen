@@ -9,7 +9,7 @@ env:
     platform=
     target=
     arch=
-    dev_build=
+    dev_build
     optimize=speed_trace
     debug_symbols=
     separate_debug_symbols=
