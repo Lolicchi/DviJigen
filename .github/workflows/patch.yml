@@ -28,8 +28,6 @@ env:
     openxr=no
     use_volk=yes
     disable_exceptions=yes
-    custom_modules=''
-    custom_modules_recursive=yes
 jobs:
   compile:
     runs-on: windows-latest
