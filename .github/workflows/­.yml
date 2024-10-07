@@ -71,9 +71,9 @@ jobs:
             'scene/2d/physics/collision_object_2d.h' = ('node', 'physics/entity'), ('Node', 'Entity')
             'scene/register_scene_types.cpp' = , ('CollisionObject', 'Entity2D);
         	GDREGISTER_ABSTRACT_CLASS(CollisionObject')
-            'modules/gdscript/gdscript_tokenizer.cpp' = , ('P, KEYWORD)     \', 'P, KEYWORD)        \
-        	KEYWORD_GROUP(U''फ'')                 \
-        	KEYWORD(U"फलन", Token::FUNC)')
+            'modules/gdscript/gdscript_tokenizer.cpp' = , ('P, KEYWORD)     \', 'P, KEYWORD)         \
+        	KEYWORD_GROUP(U''फ'')                     \
+        	KEYWORD(U"फलन", Token::FUNC)')          \
           }.getenumerator()
         ) {
           $content = get-content $file.key -raw
