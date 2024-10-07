@@ -74,7 +74,7 @@ jobs:
               ('P, KEYWORD)     \', 'P, KEYWORD)         \
         	KEYWORD_GROUP(U''फ'')                     \
         	KEYWORD(U"फलन", Token::FUNC)            \'),
-              ('_peek(-1) < 128', 'true'),
+              ('!only_ascii', 'false'),
          ('sizeof(keyword)', 'sizeof(keyword) / sizeof(keyword[0])')
           }.getenumerator()
         ) {
