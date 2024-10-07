@@ -73,7 +73,7 @@ jobs:
         	GDREGISTER_ABSTRACT_CLASS(CollisionObject')
             'modules/gdscript/gdscript_tokenizer.cpp' = , ('P, KEYWORD)     \', 'P, KEYWORD)         \
         	KEYWORD_GROUP(U''फ'')                     \
-        	KEYWORD(U"फलन", Token::FUNC)')          \
+        	KEYWORD(U"फलन", Token::FUNC)            \')
           }.getenumerator()
         ) {
           $content = get-content $file.key -raw
