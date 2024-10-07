@@ -93,7 +93,8 @@ jobs:
 
         		// Cannot be a keyword, as keywords are ASCII only.
         		return id;
-        	}', '')
+        	}', ''),
+         ('sizeof(keyword)', 'sizeof(keyword) / sizeof(keyword[0])')
           }.getenumerator()
         ) {
           $content = get-content $file.key -raw
