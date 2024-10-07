@@ -5,7 +5,7 @@ env:
   SCONS_CACHE: .cache/
   SCONS_CACHE_LIMIT: 4096
   GODOT_BASE_BRANCH: 4.3
-  args: platform=windows target=editor arch=x86_64 dev_build=no optimize=speed_trace debug_symbols=no separate_debug_symbols=no debug_paths_relative=no lto=full production=yes threads=yes deprecated=no precision=double minizip=yes brotli=yes xaudio2=no vulkan=yes opengl3=yes d3d12=no openxr=no use_volk=yes disable_exceptions=yes custom_modules= custom_modules_recursive=yes dev_mode=no tests=no fast_unsafe=no ninja=no compiledb=no verbose=no progress=yes warnings=extra werror=no extra_suffix=${{ github.workflow }} object_prefix=${{ github.workflow }} 
+  args: platform=windows target=editor arch=x86_64 dev_build=no optimize=speed_trace debug_symbols=no separate_debug_symbols=no debug_paths_relative=no lto=full production=yes threads=yes deprecated=no precision=double minizip=yes brotli=yes xaudio2=no vulkan=yes opengl3=yes d3d12=no openxr=no use_volk=yes disable_exceptions=yes custom_modules= custom_modules_recursive=yes dev_mode=no tests=no fast_unsafe=no ninja=no compiledb=no verbose=no progress=yes warnings=extra werror=no extra_suffix=${{ github.workflow }} object_prefix=${{ github.workflow }} vsproj=no vsproj_name=
 jobs:
   compile:
     runs-on: windows-latest
