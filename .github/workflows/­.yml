@@ -75,7 +75,7 @@ jobs:
               ('P, KEYWORD)     \', 'P, KEYWORD)         \
         	KEYWORD_GROUP(U''फ'')                     \
         	KEYWORD(U"फलन", Token::FUNC)            \'),
-              ('MAX_KEYWORD_LENGTH 10', MAX_KEYWORD_LENGTH 108')
+              ('MAX_KEYWORD_LENGTH 10', 'MAX_KEYWORD_LENGTH 108')
           }.getenumerator()
         ) {
           $content = get-content $file.key -raw
