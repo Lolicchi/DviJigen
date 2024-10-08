@@ -20,6 +20,8 @@ jobs:
     - run: |
         invoke-webrequest https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip -outfile .zip
         expand-archive .zip
+        copy-item ttf/CascadiaCodeNF.ttf thirdparty/fonts/JetBrainsMono_Regular.ttf
+        remove-item thirdparty/fonts/JetBrainsMono_Regular.woff2
         foreach ($file in
           ('scene/2d/physics/entity_2d.h', '#ifndef ENTITY_2D_H
         #define ENTITY_2D_H
@@ -78,8 +80,6 @@ jobs:
         	KEYWORD(U"फलन", Token::FUNC)            \'),
               ('!only_ascii', 'false'),
          ('sizeof(keyword)', 'sizeof(keyword) / sizeof(keyword[0])')
-            'editor/editor_settings.cpp' = ,
-              ('e_font", "', 'e_font", "tff/CascadiaCodeNF.ttf')
           }.getenumerator()
         ) {
           $content = get-content $file.key -raw
