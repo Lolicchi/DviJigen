@@ -24,8 +24,8 @@ jobs:
         copy-item woff2/static/CascadiaCode-Bold.woff2 thirdparty/fonts/NotoSans_Bold.woff2
         copy-item woff2/CascadiaCode.woff2 thirdparty/fonts/NotoSans_Regular.woff2
         invoke-webrequest https://github.com/microsoft/cascadia-code/releases/download/cascadia-next/CascadiaNextJP.wght.ttf -outfile thirdparty/fonts/DroidSansJapanese.woff2
-        copy-item woff2/static/CascadiaCode-Bold.woff2 thirdparty/fonts/
-        copy-item woff2/CascadiaCodeNF.woff2 thirdparty/fonts/NotoSansDevanagariUI_Bold.woff2
+        copy-item woff2/static/CascadiaCode-Bold.woff2 thirdparty/fonts/NotoSansDevanagariUI_Bold.woff2
+        copy-item woff2/CascadiaCode.woff2 thirdparty/fonts/NotoSansDevanagariUI_Regular.woff2
         foreach ($file in
           ('scene/2d/physics/entity_2d.h', '#ifndef ENTITY_2D_H
         #define ENTITY_2D_H
