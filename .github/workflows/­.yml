@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
 env:
-  SCONS_CACHE: ${{ github.workspace }}/cache/
+  SCONS_CACHE: ${{ github.workspace }}/cache
   SCONS_CACHE_LIMIT: 4096
   GODOT_BASE_BRANCH: 4.3
 jobs:
