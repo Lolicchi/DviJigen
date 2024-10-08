@@ -69,7 +69,7 @@ jobs:
               ('P, KEYWORD)     \', '
         	KEYWORD_GROUP(U''関'')                     \
         	KEYWORD(U"関数", Token::FUNC)             \
-        	KEYWORD_GROUP(U''空所'')                     \
+        	KEYWORD_GROUP(U''空'')                     \
         	KEYWORD(U"空所", Token::VOID)             \'),
               ('!only_ascii', 'false', $true),
               ('sizeof(keyword)', ' / sizeof(keyword[0])')
