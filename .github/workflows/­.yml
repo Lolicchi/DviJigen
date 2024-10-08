@@ -180,7 +180,7 @@ jobs:
         		// Types (highlighter uses type color instead).
         		"' -replace '	"', '	U"'), $true),
               (' **w ', '32_t **w ', $true),
-              (' p_key', 'word == U"空"
+              (' p_key', 'word == U"空" ||
         			p_key')
             'editor/editor_settings.cpp' =
               ('/preset", "Default', '/preset", "Black (OLED)', $true),
