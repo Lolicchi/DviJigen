@@ -82,7 +82,7 @@ jobs:
         	KEYWORD(U"関数", Token::FUNC)             \'),
               ('!only_ascii', 'false'),
               ('sizeof(keyword)', 'sizeof(keyword) / sizeof(keyword[0])')
-            'gdscript/gdscript.cpp' =
+            'modules/gdscript/gdscript.cpp' =
               (' *_reserved_words[] = {
         		// Control flow.
         		"break",
