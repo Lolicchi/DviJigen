@@ -82,12 +82,118 @@ jobs:
         	KEYWORD(U"関数", Token::FUNC)             \'),
               ('!only_ascii', 'false'),
               ('sizeof(keyword)', 'sizeof(keyword) / sizeof(keyword[0])')
+            'gdscript/gdscript.cpp' =
+              (' *_reserved_words[] = {
+        		// Control flow.
+        		"break",
+        		"continue",
+        		"elif",
+        		"else",
+        		"for",
+        		"if",
+        		"match",
+        		"pass",
+        		"return",
+        		"when",
+        		"while",
+        		// Declarations.
+        		"class",
+        		"class_name",
+        		"const",
+        		"enum",
+        		"extends",
+        		"func",
+        		"namespace", // Reserved for potential future use.
+        		"signal",
+        		"static",
+        		"trait", // Reserved for potential future use.
+        		"var",
+        		// Other keywords.
+        		"await",
+        		"breakpoint",
+        		"self",
+	        	"super",
+        		"yield", // Reserved for potential future use.
+        		// Operators.
+        		"and",
+        		"as",
+        		"in",
+        		"is",
+        		"not",
+        		"or",
+        		// Special values (tokenizer treats them as literals, not as tokens).
+        		"false",
+        		"null",
+        		"true",
+        		// Constants.
+        		"INF",
+        		"NAN",
+        		"PI",
+        		"TAU",
+        		// Functions (highlighter uses global function color instead).
+        		"assert",
+        		"preload",
+        		// Types (highlighter uses type color instead).
+        		"', ('32_t' + ' *_reserved_words[] = {
+        		"関数",
+        		// Control flow.
+        		"break",
+        		"continue",
+        		"elif",
+        		"else",
+        		"for",
+        		"if",
+        		"match",
+        		"pass",
+        		"return",
+        		"when",
+        		"while",
+        		// Declarations.
+        		"class",
+        		"class_name",
+        		"const",
+        		"enum",
+        		"extends",
+        		"func",
+        		"namespace", // Reserved for potential future use.
+        		"signal",
+        		"static",
+        		"trait", // Reserved for potential future use.
+        		"var",
+        		// Other keywords.
+        		"await",
+        		"breakpoint",
+        		"self",
+	        	"super",
+        		"yield", // Reserved for potential future use.
+        		// Operators.
+        		"and",
+        		"as",
+        		"in",
+        		"is",
+        		"not",
+        		"or",
+        		// Special values (tokenizer treats them as literals, not as tokens).
+        		"false",
+        		"null",
+        		"true",
+        		// Constants.
+        		"INF",
+        		"NAN",
+        		"PI",
+        		"TAU",
+        		// Functions (highlighter uses global function color instead).
+        		"assert",
+        		"preload",
+        		// Types (highlighter uses type color instead).
+        		"' -replace '	"', '	U"'),
+              (' **w ', '32_t **w ')
             'editor/editor_settings.cpp' =
               ('/preset", "Default', '/preset", "Black (OLED)'),
               ('nt/type", 0', 'nt/type", 1'),
               ('e", 4', 'e", 2'),
               ('se_delay", 1.5', 'se_delay", 0.1'),
-              ('y", 0.3', 'y", 0.1')
+              ('y", 0.3', 'y", 0.01')
           }.getenumerator()
         ) {
           $content = get-content $file.key -raw
