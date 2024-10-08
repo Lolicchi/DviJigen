@@ -60,8 +60,8 @@ jobs:
         foreach (
           $file in @{
             'scene/2d/physics/collision_object_2d.h' =
-              ('node', 'physics/entity', true),
-              ('Node', 'Entity', true)
+              ('node', 'physics/entity', $true),
+              ('Node', 'Entity', $true)
             'scene/register_scene_types.cpp' = ,
               ('iMeshInstance2D);', '
         	GDREGISTER_ABSTRACT_CLASS(Entity2D);')
@@ -71,7 +71,7 @@ jobs:
         	KEYWORD(U"関数", Token::FUNC)             \
         	KEYWORD_GROUP(U''空'')                     \
         	KEYWORD(U"空", Token::VOID)             \'),
-              ('!only_ascii', 'false', true),
+              ('!only_ascii', 'false', $true),
               ('sizeof(keyword)', ' / sizeof(keyword[0])')
             'modules/gdscript/gdscript.cpp' =
               (' *_reserved_words[] = {
@@ -178,16 +178,16 @@ jobs:
         		"assert",
         		"preload",
         		// Types (highlighter uses type color instead).
-        		"' -replace '	"', '	U"'), true),
-              (' **w ', '32_t **w ', true),
+        		"' -replace '	"', '	U"'), $true),
+              (' **w ', '32_t **w ', $true),
               (' p_key', 'word == U"空"
         			p_key')
             'editor/editor_settings.cpp' =
-              ('/preset", "Default', '/preset", "Black (OLED)', true),
-              ('nt/type", 0', 'nt/type", 1', true),
-              ('e", 4', 'e", 2', true),
-              ('se_delay", 1.5', 'se_delay", 0.1', true),
-              ('y", 0.3', 'y", 0.01', true)
+              ('/preset", "Default', '/preset", "Black (OLED)', $true),
+              ('nt/type", 0', 'nt/type", 1', $true),
+              ('e", 4', 'e", 2', $true),
+              ('se_delay", 1.5', 'se_delay", 0.1', $true),
+              ('y", 0.3', 'y", 0.01', $true)
           }.getenumerator()
         ) {
           $content = get-content $file.key -raw
