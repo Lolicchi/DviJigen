@@ -186,7 +186,7 @@ jobs:
         		"assert",
         		"preload",
         		// Types (highlighter uses type color instead).
-        		"' -replace '	"', '	U"'),
+        		"') -replace '	"', '	U"'),
               (' **w ', '32_t **w ')
             'editor/editor_settings.cpp' =
               ('/preset", "Default', '/preset", "Black (OLED)'),
