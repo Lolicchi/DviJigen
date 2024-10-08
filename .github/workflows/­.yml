@@ -84,9 +84,9 @@ jobs:
               ('sizeof(keyword)', 'sizeof(keyword) / sizeof(keyword[0])')
             'editor/editor_settings.cpp' =
               ('/preset", "Default', '/preset", "Black (OLED)'),
-              ('nt/type", 0', 'nt/type", 1')
-              ('e", 4', 'e", 2')
-              ('se_delay", 1.5', 'se_delay", 0.1')
+              ('nt/type", 0', 'nt/type", 1'),
+              ('e", 4', 'e", 2'),
+              ('se_delay", 1.5', 'se_delay", 0.1'),
               ('y", 0.3', 'y", 0.1')
           }.getenumerator()
         ) {
