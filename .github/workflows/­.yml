@@ -112,7 +112,7 @@ jobs:
         		"await",
         		"breakpoint",
         		"self",
-	        	"super",
+        		"super",
         		"yield", // Reserved for potential future use.
         		// Operators.
         		"and",
@@ -164,7 +164,7 @@ jobs:
         		"await",
         		"breakpoint",
         		"self",
-	        	"super",
+        		"super",
         		"yield", // Reserved for potential future use.
         		// Operators.
         		"and",
