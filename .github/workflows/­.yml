@@ -20,7 +20,6 @@ jobs:
     - run: |
         invoke-webrequest https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip -outfile .zip
         expand-archive .zip
-        
         copy-item woff2/static/CascadiaCode-Bold.woff2 thirdparty/fonts/NotoSans_Bold.woff2
         copy-item woff2/CascadiaCode.woff2 thirdparty/fonts/NotoSans_Regular.woff2
         invoke-webrequest https://github.com/microsoft/cascadia-code/releases/download/cascadia-next/CascadiaNextJP.wght.ttf -outfile thirdparty/fonts/JetBrainsMono_Regular.woff2
