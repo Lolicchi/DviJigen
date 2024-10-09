@@ -1,4 +1,4 @@
-1on:
+on:
   workflow_dispatch:
 env:
   SCONS_CACHE: cache
