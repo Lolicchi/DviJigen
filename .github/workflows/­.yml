@@ -3,7 +3,7 @@ on:
 env:
   SCONS_CACHE: cache
   SCONS_CACHE_LIMIT: 4096
-  GODOT_BASE_BRANCH: 4.3
+  GODOT_BASE_BRANCH: 4.3-stable
 jobs:
   compile:
     runs-on: windows-latest
@@ -78,11 +78,6 @@ jobs:
         	KEYWORD(U"なら", Token::IF)               \'),
               ('!only_ascii', 'false', $true),
               ('sizeof(keyword)', ' / sizeof(keyword[0])')
-            'core/string/string_name.h' = ,
-              (' *p_c', '32_t *p_c')
-            'modules/gdscript/editor/gdscript_highlighter.cpp' = ,
-              ('d")] = basetype_color;', '
-        	class_names[SNAME(U"空所")] = basetype_color;')
             'modules/gdscript/gdscript.cpp' =
               (' *_reserved_words[] = {
         		// Control flow.
