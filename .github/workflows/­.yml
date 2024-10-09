@@ -20,10 +20,13 @@ jobs:
     - run: |
         invoke-webrequest https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip -outfile .zip
         expand-archive .zip
+        copy-item woff2/CascadiaCodeNF.woff2 thirdparty/fonts/JetBrainsMono_Regular.woff2
         copy-item woff2/static/CascadiaCode-Bold.woff2 thirdparty/fonts/NotoSans_Bold.woff2
         copy-item woff2/CascadiaCode.woff2 thirdparty/fonts/NotoSans_Regular.woff2
-        invoke-webrequest https://github.com/microsoft/cascadia-code/releases/download/cascadia-next/CascadiaNextJP.wght.ttf -outfile thirdparty/fonts/JetBrainsMono_Regular.ttf
-        remove-item thirdparty/fonts/JetBrainsMono_Regular.woff2 -force
+        invoke-webrequest https://github.com/microsoft/cascadia-code/releases/download/cascadia-next/CascadiaNextJP.wght.ttf -outfile thirdparty/fonts/DroidSansJapanese.ttf
+        remove-item thirdparty/fonts/DroidSansJapanese.woff2
+        copy-item woff2/static/CascadiaCode-Bold.woff2 thirdparty/fonts/NotoSansDevanagariUI_Bold.woff2
+        copy-item woff2/CascadiaCode.woff2 thirdparty/fonts/NotoSansDevanagariUI_Regular.woff2
         foreach ($file in
           ('scene/2d/physics/entity_2d.h', '#ifndef ENTITY_2D_H
         #define ENTITY_2D_H
