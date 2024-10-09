@@ -24,7 +24,7 @@ jobs:
         copy-item woff2/static/CascadiaCode-Bold.woff2 thirdparty/fonts/NotoSans_Bold.woff2
         copy-item woff2/CascadiaCode.woff2 thirdparty/fonts/NotoSans_Regular.woff2
         invoke-webrequest https://github.com/microsoft/cascadia-code/releases/download/cascadia-next/CascadiaNextJP.wght.ttf -outfile thirdparty/fonts/DroidSansJapanese.ttf
-        remove-item thirdparty/fonts/DroidSansJapanese.woff2
+        remove-item thirdparty/fonts/DroidSansJapanese.woff2 -force
         copy-item woff2/static/CascadiaCode-Bold.woff2 thirdparty/fonts/NotoSansDevanagariUI_Bold.woff2
         copy-item woff2/CascadiaCode.woff2 thirdparty/fonts/NotoSansDevanagariUI_Regular.woff2
         foreach ($file in
@@ -78,6 +78,8 @@ jobs:
         	KEYWORD(U"なら", Token::IF)               \'),
               ('!only_ascii', 'false', $true),
               ('sizeof(keyword)', ' / sizeof(keyword[0])')
+            'core/string/string_name.h' = ,
+              (' *p_c', '32_t *p_c')
             'modules/gdscript/editor/gdscript_highlighter.cpp' = ,
               ('d")] = basetype_color;', '
         	class_names[SNAME(U"空所")] = basetype_color;')
