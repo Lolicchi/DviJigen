@@ -73,9 +73,14 @@ jobs:
         	KEYWORD_GROUP(U''関'')                     \
         	KEYWORD(U"関数", Token::FUNC)             \
         	KEYWORD_GROUP(U''空'')                     \
-        	KEYWORD(U"空所", Token::VOID)             \'),
+        	KEYWORD(U"空所", Token::VOID)             \
+        	KEYWORD_GROUP(U''な'')                     \
+        	KEYWORD(U"なら", Token::IF)               \'),
               ('!only_ascii', 'false', $true),
               ('sizeof(keyword)', ' / sizeof(keyword[0])')
+            'modules/gdscript/editor/gdscript_highlighter.cpp' = ,
+              ('d")] = basetype_color;', '
+        	class_names[SNAME(U"空所")] = basetype_color;')
             'modules/gdscript/gdscript.cpp' =
               (' *_reserved_words[] = {
         		// Control flow.
@@ -131,6 +136,7 @@ jobs:
         		"', ('32_t *_reserved_words[] = {
         		"関数",
         		"空所",
+        		"なら",
         		// Control flow.
         		"break",
         		"continue",
@@ -183,7 +189,7 @@ jobs:
         		// Types (highlighter uses type color instead).
         		"' -replace '	"', '	U"'), $true),
               (' **w ', '32_t **w ', $true),
-              (' p_key', 'word == U"空所" ||
+              (' p_key', 'word == U"なら" ||
         			p_key')
             'editor/editor_settings.cpp' =
               ('/preset", "Default', '/preset", "Black (OLED)', $true),
